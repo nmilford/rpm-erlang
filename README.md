@@ -13,10 +13,10 @@ To Build:
 
 `wget https://raw.github.com/nmilford/rpm-erlang/master/erlang.spec -O ~/rpmbuild/SPECS/erlang.spec`
 
-`wget http://www.erlang.org/download/otp_src_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B01.tar.gz`
+`wget http://www.erlang.org/download/otp_src_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B02.tar.gz`
 
-`wget http://www.erlang.org/download/otp_doc_html_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B01.tar.gz`
+`wget http://www.erlang.org/download/otp_doc_html_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B02.tar.gz`
 
-`wget http://www.erlang.org/download/otp_doc_man_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B01.tar.gz`
+`wget http://www.erlang.org/download/otp_doc_man_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B02.tar.gz`
 
 `rpmbuild -bb ~/rpmbuild/SPECS/erlang.spec`
