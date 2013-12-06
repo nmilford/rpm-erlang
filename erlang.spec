@@ -2,13 +2,13 @@
 #
 # sudo yum -y install rpmdevtools && rpmdev-setuptree
 # wget https://raw.github.com/nmilford/rpm-erlang/master/erlang.spec -O ~/rpmbuild/SPECS/erlang.spec
-# wget http://www.erlang.org/download/otp_src_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B01.tar.gz
-# wget http://www.erlang.org/download/otp_doc_html_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B01.tar.gz 
-# wget http://www.erlang.org/download/otp_doc_man_R16B01.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B01.tar.gz
+# wget http://www.erlang.org/download/otp_src_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B02.tar.gz
+# wget http://www.erlang.org/download/otp_doc_html_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B02.tar.gz 
+# wget http://www.erlang.org/download/otp_doc_man_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B02.tar.gz
 # rpmbuild -bb ~/rpmbuild/SPECS/erlang.spec
 
 %global erl_ver R16B
-%global erl_rel 01
+%global erl_rel 02
 %global erl_dest /usr/
 
 Name:     erlang
@@ -126,6 +126,8 @@ rm -rf %{buildroot}
 %{erl_dest}/%{_lib}/erlang/*
 
 %changelog
+* Fri Dec 6 2013 Nathan Milford <nathan@milford.io>
+- Bumped to version R16B02. 
 * Mon Jul 1 2013 Nathan Milford <nathan@milford.io>
 - First shot at an Erlang/OTP RPM, version R16B01. 
 - Should be compatable with the ESL & EPEL-Erlang RPMs in that it obsoletes them.
