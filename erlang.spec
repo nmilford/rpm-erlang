@@ -2,13 +2,13 @@
 #
 # sudo yum -y install rpmdevtools && rpmdev-setuptree
 # wget https://raw.github.com/nmilford/rpm-erlang/master/erlang.spec -O ~/rpmbuild/SPECS/erlang.spec
-# wget http://www.erlang.org/download/otp_src_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B02.tar.gz
-# wget http://www.erlang.org/download/otp_doc_html_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B02.tar.gz 
-# wget http://www.erlang.org/download/otp_doc_man_R16B02.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B02.tar.gz
+# wget http://www.erlang.org/download/otp_src_R16B03.tar.gz -O ~/rpmbuild/SOURCES/otp_src_R16B03.tar.gz
+# wget http://www.erlang.org/download/otp_doc_html_R16B03.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_html_R16B03.tar.gz 
+# wget http://www.erlang.org/download/otp_doc_man_R16B03.tar.gz -O ~/rpmbuild/SOURCES/otp_doc_man_R16B03.tar.gz
 # rpmbuild -bb ~/rpmbuild/SPECS/erlang.spec
 
 %global erl_ver R16B
-%global erl_rel 02
+%global erl_rel 03
 %global erl_dest /usr/
 
 Name:     erlang
@@ -104,7 +104,8 @@ sed -i -e 's|SSL_DED_LD_RUNTIME_LIBRARY_PATH = @SSL_DED_LD_RUNTIME_LIBRARY_PATH@
 sed -i -e 's|$(SO_LD) $(SO_LDFLAGS) -L$(SO_SSL_LIBDIR) -Wl,-R$(SO_SSL_LIBDIR) |$(SO_LD) $(SO_LDFLAGS) -L$(SO_SSL_LIBDIR) |' %_builddir/otp_src_%{erl_ver}%{erl_rel}/lib/crypto/priv/Makefile
 
 %build
-CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
+# CentOS 6.5 disables EC GF2m curves.
+FLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing -DOPENSSL_NO_EC=1"
 
 %configure --enable-shared-zlib --prefix=%{erl_dest} 
 
@@ -126,6 +127,9 @@ rm -rf %{buildroot}
 %{erl_dest}/%{_lib}/erlang/*
 
 %changelog
+* Wed Dec 25 2013 Nathan Milford <nathan@milford.io>
+- Bumped to version R16B03.
+- Added workaround for EC GF2m curves missing in CentOS 6.5 OpenSSL.
 * Fri Dec 6 2013 Nathan Milford <nathan@milford.io>
 - Bumped to version R16B02. 
 * Mon Jul 1 2013 Nathan Milford <nathan@milford.io>
